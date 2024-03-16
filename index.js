@@ -1,18 +1,26 @@
 let name = 'Tayyab';
 console.log("Before");
 // Callback Function Calling
-getUser(1, (user) => {
+
+getUser(1, getUser);
+
+console.log("After");
+
+// Solving Callback Hell or Nested Callback Function
+
+function getUser(user){
     console.log(user);
     if(user.githubUsername === name){
-        getRepo(user.githubUsername, (repo) =>{
-            console.log(repo);
-        });
+        getRepo(user.githubUsername, displayRepo);
     }
     else{
         console.log("No Repo Found.");
     }   
-});
-console.log("After");
+}
+
+function displayRepo(repos){
+    console.log(repos);
+}
 
 //Creating Callback function
 
