@@ -1,15 +1,22 @@
 console.log('Befor');
 
-
+const name = 'Tayyab';
 // Callback Functions
 
-const user = getUser(1, (user) => console.log('User', user));
+const p = getUser(1).then(user => console.log(user)).catch(err => console.log(err.message));
 
-function getUser(id, callback){
-    setTimeout(() => {
-        console.log('Reading a user from a databse...');
-        callback({id: id, gitHub: 'www.github.com/tayyab-abdullah'});
-    }, 2000)
 
+function getUser(id){
+    return new Promise((resolve, reject) => {
+        //Kickoff some async work
+        setTimeout(() => {
+            console.log('Reading a user from a databse...');
+            const user = {id: id, gitHubUsername: 'Tayyab'};
+            if(user.gitHubUsername === name){
+                resolve({id: id, gitHubUsername: 'Tayyab'});
+            }
+            else reject(new Error('User not Found....'));
+        }, 2000)
+    })
 }
 console.log('After');
