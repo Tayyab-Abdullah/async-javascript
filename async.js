@@ -3,7 +3,22 @@ console.log('Befor');
 const name = 'Tayyab';
 // Callback Functions
 
-const p = getUser(1).then(user => console.log(user)).catch(err => console.log(err.message));
+// const p = getUser(1).then(user => console.log(user)).catch(err => console.log(err.message));
+
+
+// Async and Await approach
+
+async function displayUser(){
+    try{
+        const user = await getUser(1);
+        console.log(user);
+    }
+    catch(err){
+        console.log("Error: ", err.message);
+    }
+}
+
+displayUser();
 
 
 function getUser(id){
